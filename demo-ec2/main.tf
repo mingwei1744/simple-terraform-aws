@@ -1,11 +1,11 @@
 /*
 Main configurations of Terraform deployment
-This can be converted into a module package in a deployment with multiple objects
+For code reusability, convert to a module package. Read more - Terraform module
 */
 
 # Local variables
 locals {
-  region     = "ap-southeast-1" // Singapore
+  region     = "ap-southeast-1"        // Singapore
   ubuntu_ami = "ami-02ee763250491e04a" // Ubuntu 22.04 AMI
 }
 
@@ -39,7 +39,7 @@ resource "aws_vpc" "demoVPC" {
 #===========================================================================================
 resource "aws_subnet" "public-sn" {
   count             = length(var.public_subnets) // Number of public subnets = len(var.public_subnets)
-  vpc_id            = aws_vpc.demoVPC.id // Reference to resource syntax: <resource_type>.<resource_name>.id
+  vpc_id            = aws_vpc.demoVPC.id         // Reference to resource syntax: <resource_type>.<resource_name>.id
   cidr_block        = var.public_subnets[count.index]
   availability_zone = data.aws_availability_zones.available.names[count.index] // Retrieve data of aws_availability_zones
 
@@ -140,7 +140,7 @@ resource "aws_default_network_acl" "default" {
   default_network_acl_id = aws_vpc.demoVPC.default_network_acl_id
 
   ingress {
-    protocol   = -1
+    protocol   = -1 // -1 = all protocols
     rule_no    = 100
     action     = "allow"
     cidr_block = "0.0.0.0/0"
@@ -315,7 +315,7 @@ resource "aws_instance" "demoEC2" {
     delete_on_termination = true
   }
 
-  user_data = "${file("../scripts/demo.sh")}" // User data
+  user_data = file("../scripts/demo.sh") // User data
 
   tags = {
     Name = "demoEC2"

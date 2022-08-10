@@ -6,7 +6,7 @@ Used for customization of Terraform modules through user input
 variable "aws_profile" {
   description = "AWS profile for programmatic access"
   type        = string
-  default = "default"
+  default     = "default"
 }
 
 # Objects naming convention
