@@ -22,7 +22,7 @@ aws configure
 ```
 e) Alternatively, you can edit the config and credentials files. <br />
 The default location of the shared AWS config and credentials files are resided in .aws folder placed in the "home" directory on your computer.
-![alt text](http://url/to/img.png)
+![default config location](https://github.com/mingwei1744/simple-terraform-aws/blob/main/config-location.PNG)
 > credentials
 ```
 [profile-name]
@@ -77,4 +77,23 @@ terraform apply
 > If you have configured aws profile
 ```
 terraform apply -var="aws_profile=<profile_name>"
+```
+
+## Connecting to the EC2 instance
+a) Upon successful deployment, a keypair "demoKey.pem" will be generated in the /demo-ec2 directory.
+> SSH to the EC2 instance using the keypair. Public DNS of the EC2 instance can be found in the outputs or AWS web interface.
+```
+ssh -i "demoKey.pem" ubuntu@<public_dns>
+```
+
+## Removing deployment
+a) To remove all objects deployed
+> From the main working directory /demo-ec2 run terraform destroy
+```
+terraform destroy
+```
+
+> If you have configured aws profile
+```
+terraform destroy -var="aws_profile=<profile_name>"
 ```
