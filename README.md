@@ -21,7 +21,7 @@ d) Configure your AWS profile with the access key created in Step b. <br />
 aws configure
 ```
 e) Alternatively, you can edit the config and credentials files. <br />
-The default location of the shared AWS config and credentials files are resided in .aws folder placed in the "home" directory on your computer.
+The default location of the shared AWS config and credentials files are resided in .aws folder placed in the "home" directory on your computer. <br />
 ![default config location](https://github.com/mingwei1744/simple-terraform-aws/blob/main/config-location.PNG)
 > credentials
 ```
