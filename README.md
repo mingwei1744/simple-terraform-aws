@@ -21,6 +21,8 @@ d) Configure your AWS profile with the access key created in Step b. <br />
 aws configure
 ```
 e) Alternatively, you can edit the config and credentials files. <br />
+The default location of the shared AWS config and credentials files are resided in .aws folder placed in the "home" directory on your computer.
+![alt text](http://url/to/img.png)
 > credentials
 ```
 [profile-name]
@@ -50,16 +52,22 @@ a) Recommended to have an IDE supporting Terraform (hcl) <br />
     
 ## Deployment
 a) Initialize a working directory containing Terraform configuration files.
-    > From the main working directory /demo-ec2 run terraform init
+> From the main working directory /demo-ec2 run terraform init
 ```
 terraform init
 ```
 
 b) Preview execution plan
-    > From the main working directory /demo-ec2 run terraform plan
+> From the main working directory /demo-ec2 run terraform plan. By default, the default aws profile will be used.
 ```
 terraform plan
 ```
+
+> If you have configured aws profile
+```
+terraform plan -var="aws_profile=<profile_name>"
+```
+
 c) Start deployment
 > From the main working directory /demo-ec2 run terraform apply. By default, the default aws profile will be used.
 ```
